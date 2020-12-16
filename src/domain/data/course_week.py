@@ -1,5 +1,6 @@
 from src.domain.data.base import DataEntity, DataException
 from src.domain.data.document import Document
+from src.domain.view.factory import material_card, text
 
 
 class CourseWeek(DataEntity):
@@ -34,8 +35,9 @@ class CourseWeek(DataEntity):
         return csv
 
     def to_html(self) -> str:
-        # todo
-        pass
+        return material_card(content=text(
+                str(self).replace("\n", " <br> ")
+            ))
 
     def __str__(self) -> str:
         string = ""

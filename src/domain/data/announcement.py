@@ -3,6 +3,7 @@ from enum import Enum
 
 from src.domain.data.base import DataEntity, DataException
 from src.domain.data.document import Document
+from src.domain.view.factory import material_card, text
 
 
 class Type(Enum): NORMAL, IMPORTANT, VERY_IMPORTANT = 0, 1, 2
@@ -35,8 +36,9 @@ class Announcement(DataEntity):
         return f"{self.get_id()},{self.title},{self.document.to_csv()},{self.type.value}"
 
     def to_html(self) -> str:
-        # todo
-        pass
+        return material_card(content=text(
+                str(self).replace("\n", " <br> ")
+            ))
 
     def __str__(self) -> str:
         return f"{str(self.type.name).title()} Announcement : {self.title}\n" \

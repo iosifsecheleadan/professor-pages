@@ -3,6 +3,7 @@ import os
 from commonmark import commonmark
 
 from src.domain.data.base import DataException
+from src.domain.view.factory import link_text
 
 
 class Document:
@@ -25,8 +26,8 @@ class Document:
         return self.location
 
     def to_html(self) -> str:
-        # todo
-        pass
+        doc_name = os.path.basename(self.location)
+        return link_text(content=doc_name, link=self.location)
 
     def __str__(self) -> str:
         return f"document at {self.location}"

@@ -1,5 +1,6 @@
 from src.domain.data.base import DataEntity, DataException
 from src.domain.data.document import Document
+from src.domain.view.factory import material_card, text
 
 
 class Professor(DataEntity):
@@ -46,8 +47,9 @@ class Professor(DataEntity):
                f"{self.profile_img.to_csv()},{self.additional_info.to_csv()}"
 
     def to_html(self) -> str:
-        # todo
-        pass
+        return material_card(content=text(
+                str(self).replace("\n", " <br> ")
+            ))
 
     def __str__(self) -> str:
         return f"{self.title}, {self.full_name}\n" \
@@ -59,4 +61,3 @@ class Professor(DataEntity):
 
     def __eq__(self, other: object) -> bool:
         return isinstance(other, Professor) and super().__eq__(other)
-
