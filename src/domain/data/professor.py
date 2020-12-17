@@ -1,6 +1,6 @@
 from src.domain.data.base import DataEntity, DataException
 from src.domain.data.document import Document
-from src.domain.view.factory import material_card, text
+from src.domain.view.factory import material_card, title, sub_title, break_line, image
 
 
 class Professor(DataEntity):
@@ -47,9 +47,13 @@ class Professor(DataEntity):
                f"{self.profile_img.to_csv()},{self.additional_info.to_csv()}"
 
     def to_html(self) -> str:
-        return material_card(content=text(
-                str(self).replace("\n", " <br> ")
-            ))
+        content = title(f"{self.title}, {self.full_name}") + break_line + \
+                  sub_title(f"Personal email: {self.personal_email}") + \
+                  sub_title(f"Faculty email: {self.faculty_email}") + \
+                  sub_title(f"Office hours: {self.office_hours_timeframe}, {self.office_hours_location}") + \
+                  image(self.profile_img.location) + \
+                  self.additional_info.to_html()
+        return material_card(content)
 
     def __str__(self) -> str:
         return f"{self.title}, {self.full_name}\n" \

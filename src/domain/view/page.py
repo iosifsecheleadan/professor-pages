@@ -1,3 +1,6 @@
+from src.domain.data.base import DataEntity
+
+__page_start = """
 <!DOCTYPE html> <html lang="en">
 <head>
     <title>Home - Professor Name</title>
@@ -48,18 +51,27 @@
 
 <div class="navigation-background">
     <a class="navigation-item" href="home.html"> HOME </a>
-    <a class="navigation-item" href="page/courses.html"> COURSES </a>
-    <a class="navigation-item" href="page/announcements.html"> NEWS </a>
-    <a class="navigation-item" href="page/about.html"> ABOUT </a>
+    <a class="navigation-item" href="courses.html"> COURSES </a>
+    <a class="navigation-item" href="announcements.html"> NEWS </a>
+    <a class="navigation-item" href="about.html"> ABOUT </a>
 </div>
 
 <div class="center">
 
-<div style="background-color: white; border-radius: 8pt;" class="card">
-{content}
-</div>
+"""
+
+__page_end = """
 
 </div>
 
 </div>
 </html>
+"""
+
+
+def page(items: list):
+    content = ""
+    for item in items:
+        if isinstance(item, DataEntity): content += item.to_html()
+        else: content += str(item)
+    return __page_start + content + __page_end

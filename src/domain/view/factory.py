@@ -1,40 +1,9 @@
-def link_text(content,
-              link: str,
-              bold: bool = False,
-              italics: bool = False,
-              underline: bool = False,
-              strikethrough: bool = False,
-              size: int = 14,
-              ) -> str:
-    return text(content=__link(content, link),
-                size=size,
-                bold=bold,
-                italics=italics,
-                underline=underline,
-                strikethrough=strikethrough
-                )
-
-
-def email(content,
-          address: str,
-          bold: bool = False,
-          italics: bool = False,
-          underline: bool = False,
-          strikethrough: bool = False,
-          size: int = 14,
-          ) -> str:
-    return text(content=__mailto(content, address),
-                size=size,
-                bold=bold,
-                italics=italics,
-                underline=underline,
-                strikethrough=strikethrough
-                )
+from src.domain.view.color import black, transparent
 
 
 def text(content,
-         color: str = "black",
-         size: int = 14,
+         color: str = black,
+         size: int = 10,
          bold: bool = False,
          italics: bool = False,
          underline: bool = False,
@@ -51,17 +20,101 @@ def text(content,
     return content
 
 
+def title(content,
+          color: str = black,
+          italics: bool = False,
+          underline: bool = False,
+          strikethrough: bool = False,
+          ) -> str:
+    return text(content=content,
+                color=color,
+                size=18,
+                bold=True,
+                italics=italics,
+                underline=underline,
+                strikethrough=strikethrough
+                )
+
+
+def sub_title(content,
+              color: str = black,
+              italics: bool = False,
+              underline: bool = False,
+              strikethrough: bool = False,
+              ) -> str:
+    return text(content=content,
+                color=color,
+                size=14,
+                bold=True,
+                italics=italics,
+                underline=underline,
+                strikethrough=strikethrough
+                )
+
+
+def description(content,
+                color: str = black,
+                underline: bool = False,
+                strikethrough: bool = False,
+                ) -> str:
+    return text(content=content,
+                color=color,
+                size=10,
+                bold=False,
+                italics=True,
+                underline=underline,
+                strikethrough=strikethrough
+                )
+
+
+def link_text(content,
+              link: str,
+              size: int = 10,
+              bold: bool = False,
+              italics: bool = False,
+              underline: bool = False,
+              strikethrough: bool = False,
+              ) -> str:
+    return text(content=__link(content, link),
+                size=size,
+                bold=bold,
+                italics=italics,
+                underline=underline,
+                strikethrough=strikethrough
+                )
+
+
+def email(content,
+          address: str,
+          size: int = 10,
+          bold: bool = False,
+          italics: bool = False,
+          underline: bool = False,
+          strikethrough: bool = False,
+          ) -> str:
+    return text(content=__mailto(content, address),
+                size=size,
+                bold=bold,
+                italics=italics,
+                underline=underline,
+                strikethrough=strikethrough
+                )
+
+
 def material_card(content,
                   rounded: int = 8,
-                  color: str = "#ffffff00",
+                  color: str = transparent,
                   ) -> str:
     return f"<div style=\"background-color:{color}; border-radius: {rounded}pt;\" " \
-           f"class=\"card\" > {content} </div>"
+           f"class=\"card\" >\n {content} </div>\n"
 
 
 def image(link: str,
           ) -> str:
-    return f"<img src=\"{link}\">"
+    return f"<img src=\"{link}\">\n"
+
+
+break_line = "<br>"
 
 
 def __bold(content) -> str:
@@ -83,7 +136,7 @@ def __underline(content) -> str:
 def __link(content,
            link: str,
            ):
-    return f"<a href=\"{link}\"> {content} </a>"
+    return f"<a href=\"{link}\"> {content} </a>\n"
 
 
 def __mailto(content,
@@ -95,10 +148,10 @@ def __mailto(content,
 def __style(content,
             style: str,
             ) -> str:
-    return f"<div style={style}> {content} </div>"
+    return f"<div style=\"{style}\">\n {content} </div>\n"
 
 
-def __style_color(color: str = "black") -> str:
+def __style_color(color: str = black) -> str:
     return f"color:{color}; "
 
 

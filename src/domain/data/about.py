@@ -5,6 +5,9 @@ from src.domain.data.document import Document
 
 
 # todo add repository method : add_about_document
+from src.domain.view.factory import material_card, title
+
+
 class About(DataEntity):
     def __init__(self, identifier: int,
                  documents: list,
@@ -29,8 +32,10 @@ class About(DataEntity):
         return csv
 
     def to_html(self) -> str:
-        # todo
-        pass
+        content = title("About")
+        for document in self.documents:
+            content += document.to_html()
+        return material_card(content)
 
     def __str__(self) -> str:
         string = "About Documents:"

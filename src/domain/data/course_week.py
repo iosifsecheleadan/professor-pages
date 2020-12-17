@@ -1,6 +1,6 @@
 from src.domain.data.base import DataEntity, DataException
 from src.domain.data.document import Document
-from src.domain.view.factory import material_card, text
+from src.domain.view.factory import material_card, sub_title
 
 
 class CourseWeek(DataEntity):
@@ -35,13 +35,17 @@ class CourseWeek(DataEntity):
         return csv
 
     def to_html(self) -> str:
-        return material_card(content=text(
-                str(self).replace("\n", " <br> ")
-            ))
+        title = f"Week {self.week_number}"
+        if self.week_number == 0: title = "General"
+
+        content = sub_title(title)
+        for document in self.documents:
+            content += document.to_html()
+        return material_card(content)
 
     def __str__(self) -> str:
         string = ""
-        if self.week_number == 0: string += "About"
+        if self.week_number == 0: string += "General"
         else: string += f"Week {self.week_number}"
         for document in self.documents:
             string += f"\n{document}"

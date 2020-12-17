@@ -3,7 +3,8 @@ import os
 from commonmark import commonmark
 
 from src.domain.data.base import DataException
-from src.domain.view.factory import link_text
+from src.domain.view.color import red
+from src.domain.view.factory import link_text, material_card, description
 
 
 class Document:
@@ -42,8 +43,12 @@ class MarkdownDocument(Document):
         super().__init__(location)
 
     def to_html(self) -> str:
-        with open(self.location) as markdown:
-            return commonmark(markdown.read())
+        try:
+            with open(self.location, "r") as markdown:
+                return material_card(commonmark(markdown.read()))
+        except FileNotFoundError: return material_card(
+            description(f"File {self.location} not found", color=red)
+        )
 
     def __str__(self) -> str:
         return "md - " + super().__str__()
