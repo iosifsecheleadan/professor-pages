@@ -7,7 +7,7 @@ class TempUI:
     def __init__(self):
         self.file = "temp.html"
         self.objects = [
-            DataFactory.professor_from_csv("1,Sechelea Iosif,Professor,iosif@gmail.com,iosif@prof.com,16 - 18,zoom,profile.jpg,yes.pdf"),
+            DataFactory.professor_from_csv("1,Sechelea Iosif,Professor,iosif@gmail.com,iosif@prof.com,16 - 18,zoom,profile.png,yes.pdf"),
             DataFactory.about_from_csv("1,what.md,yes.html"),
             DataFactory.announcement_from_csv("1,Important,important.docx,1"),
             DataFactory.announcement_from_csv("2,Very important,very.md,2"),
