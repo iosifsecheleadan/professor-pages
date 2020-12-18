@@ -1,3 +1,5 @@
-# start
+from src.ui.user_interface import UserInterface
 
-#ui
+if __name__ == '__main__':
+    ui = UserInterface()
+    ui.run()
