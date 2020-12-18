@@ -1,3 +1,5 @@
-# start
+from src.ui.user_interface import UserInterface
 
-# repo-ctrl
+if __name__ == '__main__':
+    ui = UserInterface()
+    ui.run()
