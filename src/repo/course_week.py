@@ -21,3 +21,5 @@ class CourseWeekRepository(FileRepositoryInterface):
 
     def delete(self, value: CourseWeek):
         pass
+    def getByWeek(self,c_identif,week_nr):
+        pass

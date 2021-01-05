@@ -21,3 +21,7 @@ class CourseRepository(FileRepositoryInterface):
 
     def delete(self, value: Course):
         pass
+    def getByName(self,name):
+        pass
+    def getByCode(self,code):
+        pass

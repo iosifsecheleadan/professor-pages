@@ -21,3 +21,5 @@ class AnnouncementRepository(FileRepositoryInterface):
 
     def delete(self, value: Announcement):
         pass
+    def getByTitle(self,title):
+        pass

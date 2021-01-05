@@ -28,6 +28,14 @@ class CourseController(WebControllerInterface):
     def remove_course_week(self, course_week: CourseWeek):
         pass
 
+    def getByName(self,name):
+        pass
+    def getByCode(self,code):
+        pass
+
+    def getByWeek(self, c_identif, week_nr):
+        pass
+
     def exit(self):
         self.Courses.save_all()
         self.CourseWeeks.save_all()
