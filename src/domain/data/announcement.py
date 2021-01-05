@@ -11,12 +11,12 @@ class Type(Enum): NORMAL, IMPORTANT, VERY_IMPORTANT = 0, 1, 2
 
 
 class Announcement(DataEntity):
-    def __init__(self, identifier: int,
+    def __init__(self,
                  title: str,
                  document: Document,
                  announcement_type: Type = Type.NORMAL,
                  ):
-        super(Announcement, self).__init__(identifier)
+        super(Announcement, self).__init__(0)
         self.time = datetime.now().strftime("%c")
         self.title = title
         self.document = document
@@ -26,12 +26,13 @@ class Announcement(DataEntity):
     def from_csv(csv_string: str):
         csv_list = csv_string.strip().split(",")
         if len(csv_list) != 4: raise DataException("Invalid CSV Format")
-        return Announcement(
-            int(csv_list[0]),
+        new = Announcement(
             csv_list[1],
             Document.from_csv(csv_list[2]),
             Type(int(csv_list[3]))
         )
+        new.set_id(int(csv_list[0]))
+        return new
 
     def to_csv(self) -> str:
         return f"{self.get_id()},{self.title},{self.document.to_csv()},{self.type.value}"
