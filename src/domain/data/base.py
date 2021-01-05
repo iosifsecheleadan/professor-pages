@@ -3,6 +3,7 @@ class DataException(Exception):
 
 
 class DataEntity:
+    # todo change all with new API
     """
     Base Data Entity Class
     """
@@ -33,6 +34,14 @@ class DataEntity:
         :return:
         """
         return self.__identification
+
+    def set_id(self, identifier: int):
+        """
+        Set ID of Entity
+        :param identifier:
+        :return:
+        """
+        self.__identification = identifier
 
     # abstract
     def to_html(self) -> str:

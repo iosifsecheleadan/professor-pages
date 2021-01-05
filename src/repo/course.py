@@ -4,6 +4,7 @@ from src.repo.repository import FileRepositoryInterface
 
 class CourseRepository(FileRepositoryInterface):
     def __init__(self):
+        self.courses = []
         self.read_all()
         pass
 

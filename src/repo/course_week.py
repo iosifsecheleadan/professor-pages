@@ -4,6 +4,7 @@ from src.repo.repository import FileRepositoryInterface
 
 class CourseWeekRepository(FileRepositoryInterface):
     def __init__(self):
+        self.weeks = []
         self.read_all()
         pass
 

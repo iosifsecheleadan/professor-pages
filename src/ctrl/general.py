@@ -1,13 +1,19 @@
+from os.path import normpath
+
 from src.ctrl.controller import WebControllerInterface
 from src.domain.data.about import About
 from src.domain.data.announcement import Announcement
 from src.domain.data.professor import Professor
+from src.domain.view.page import page
 from src.repo.about_professor import AboutProfessorRepository
 from src.repo.announcement import AnnouncementRepository
 
 
 class GeneralController(WebControllerInterface):
     def __init__(self):
+        self.professor_page_location = normpath("../page/home.html")
+        self.about_page_location = normpath("../page/about.html")
+        self.announcements_page_location = normpath("../page/announcements.html")
         self.AboutProfessor = AboutProfessorRepository()
         self.Announcements = AnnouncementRepository()
 
@@ -24,13 +30,13 @@ class GeneralController(WebControllerInterface):
         pass
 
     def add_announcement(self, announcement: Announcement):
-        pass
+        self.Announcements.create(announcement)
 
     def update_announcement(self, announcement: Announcement):
-        pass
+        self.Announcements.update(announcement)
 
     def remove_announcement(self, announcement: Announcement):
-        pass
+        self.Announcements.delete(announcement)
 
     def exit(self):
         self.AboutProfessor.save_all()
@@ -38,7 +44,10 @@ class GeneralController(WebControllerInterface):
         self._create_pages()
 
     def _create_pages(self):
-        pass
+        html_page = page(self.Announcements.announcements)
+        with open(self.announcements_page_location, "w") as file:
+            file.write(html_page)
+
 
 
 
