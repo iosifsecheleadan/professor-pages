@@ -4,7 +4,7 @@ from src.domain.view.factory import material_card, title, sub_title, break_line,
 
 
 class Professor(DataEntity):
-    def __init__(self, identifier: int,
+    def __init__(self,
                  full_name: str,
                  title: str,
                  personal_email: str,
@@ -14,7 +14,7 @@ class Professor(DataEntity):
                  profile_img: Document,
                  additional_info: Document,
                  ):
-        super(Professor, self).__init__(identifier)
+        super(Professor, self).__init__(0)
         self.personal_email = personal_email
         self.faculty_email = faculty_email
         self.title = title
@@ -28,8 +28,7 @@ class Professor(DataEntity):
     def from_csv(csv_string: str):
         csv_list = csv_string.strip().split(",")
         if len(csv_list) != 9: raise DataException("Invalid CSV Format")
-        return Professor(
-            int(csv_list[0]),
+        professor = Professor(
             csv_list[1],
             csv_list[2],
             csv_list[3],
@@ -39,6 +38,8 @@ class Professor(DataEntity):
             Document.from_csv(csv_list[7]),
             Document.from_csv(csv_list[8]),
         )
+        professor.set_id(int(csv_list[0]))
+        return professor
 
     def to_csv(self) -> str:
         return f"{self.get_id()},{self.full_name},{self.title}," \

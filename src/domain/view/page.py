@@ -51,7 +51,7 @@ __page_start = """
 
 <div class="navigation-background">
     <a class="navigation-item" href="home.html"> HOME </a>
-    <a class="navigation-item" href="courses.html"> COURSES </a>
+    <a class="navigation-item" href="courses/all_courses.html"> COURSES </a>
     <a class="navigation-item" href="announcements.html"> NEWS </a>
     <a class="navigation-item" href="about.html"> ABOUT </a>
 </div>

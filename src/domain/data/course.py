@@ -3,14 +3,14 @@ from src.domain.view.factory import material_card, title, description
 
 
 class Course(DataEntity):
-    def __init__(self, identifier: int,
+    def __init__(self,
                  name: str,
                  code: str,
                  faculty: str,
                  study_year: int,
                  no_weeks: int,
                  ):
-        super(Course, self).__init__(identifier)
+        super(Course, self).__init__(0)
         self.name = name
         self.code = code
         self.faculty = faculty
@@ -21,14 +21,15 @@ class Course(DataEntity):
     def from_csv(csv_string: str):
         csv_list = csv_string.strip().split(",")
         if len(csv_list) != 6: raise DataException("Invalid CSV Format")
-        return Course(
-            int(csv_list[0]),
+        course = Course(
             csv_list[1],
             csv_list[2],
             csv_list[3],
             int(csv_list[4]),
             int(csv_list[5]),
         )
+        course.set_id(int(csv_list[0]))
+        return course
 
     def to_csv(self) -> str:
         return f"{self.get_id()},{self.name},{self.code},{self.faculty}," \

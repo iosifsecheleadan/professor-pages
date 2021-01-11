@@ -4,12 +4,12 @@ from src.domain.view.factory import material_card, sub_title
 
 
 class CourseWeek(DataEntity):
-    def __init__(self, identifier: int,
+    def __init__(self,
                  course_identifier: int,
                  week_number: int,
                  documents: list,
                  ):
-        super(CourseWeek, self).__init__(identifier)
+        super(CourseWeek, self).__init__(0)
         self.course_identifier = course_identifier
         self.week_number = week_number
         self.documents = documents
@@ -21,12 +21,13 @@ class CourseWeek(DataEntity):
         document_list = []
         for document_location in csv_list[3:]:
             document_list.append(Document.from_csv(document_location))
-        return CourseWeek(
-            int(csv_list[0]),
+        week = CourseWeek(
             int(csv_list[1]),
             int(csv_list[2]),
             document_list
         )
+        week.set_id(int(csv_list[0]))
+        return week
 
     def to_csv(self) -> str:
         csv = f"{self.get_id()},{self.course_identifier},{self.week_number}"
