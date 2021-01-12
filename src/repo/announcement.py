@@ -37,3 +37,10 @@ class AnnouncementRepository(FileRepositoryInterface):
 
     def delete(self, value: Announcement):
         self.announcements.remove(value)
+
+    def getByTitle(self,title):
+        for ann in self.announcements:
+            if ann.title==title:
+                return ann
+
+
