@@ -18,16 +18,16 @@ class GeneralController(WebControllerInterface):
         self.Announcements = AnnouncementRepository()
 
     def create_professor(self, professor: Professor):
-        pass
+        self.AboutProfessor.create_professor(professor)
 
     def update_professor(self, professor: Professor):
-        pass
+        self.AboutProfessor.update_professor(professor)
 
     def create_about(self, about: About):
-        pass
+        self.AboutProfessor.create_about(about)
 
     def update_about(self, about: About):
-        pass
+        self.AboutProfessor.update_about(about)
 
     def add_announcement(self, announcement: Announcement):
         self.Announcements.create(announcement)
@@ -44,10 +44,15 @@ class GeneralController(WebControllerInterface):
         self._create_pages()
 
     def _create_pages(self):
-        html_page = page(self.Announcements.announcements)
-        with open(self.announcements_page_location, "w") as file:
-            file.write(html_page)
+        html_pageAnn = page(self.Announcements.announcements)
+        with open(self.announcements_page_location, "w") as file1:
+            file1.write(html_pageAnn)
 
-
+        html_pageHome = page([self.AboutProfessor.professor])
+        with open(self.professor_page_location, "w") as file2:
+            file2.write(html_pageHome)
+        html_pageAbout = page([self.AboutProfessor.about])
+        with open(self.about_page_location, "w") as file3:
+            file3.write(html_pageAbout)
 
 
