@@ -11,7 +11,7 @@ setup(
     packages=['src'],
 
     install_requires=[
-        'readthedocs/commonmark.py'
+        'commonmark'
     ],
 
     classifiers=[
