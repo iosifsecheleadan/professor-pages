@@ -1,5 +1,4 @@
 from src.domain.data.course_week import CourseWeek
-from src.domain.data.factory import DataFactory
 from src.repo.repository import FileRepositoryInterface
 from os.path import normpath
 
