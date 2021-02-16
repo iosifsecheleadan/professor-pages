@@ -16,7 +16,7 @@ class CourseWeekRepository(FileRepositoryInterface):
     def read_all(self):
         with open(self.__weeks_file_location, "r") as file:
             for line in file.readlines():
-                new = DataFactory.course_from_csv(line)
+                new = DataFactory.course_week_from_csv(line)
                 self.__weekLastId = new.get_id()
                 self.weeks.append(new)
         self.__weekLastId += 1
