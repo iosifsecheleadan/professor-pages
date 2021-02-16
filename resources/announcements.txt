@@ -1,4 +1,4 @@
-1,Titlu2,nolocation.a,0
-2,Titlu2,nolocation.a,0
-3,Titlu2,nolocation.a,0
-4,Titlu2,nolocation.a,0
+1,Titlu2,info.md,0
+2,Titlu2,what.md,1
+3,Titlu2,what.txt,2
+4,Titlu2,yes.pdf,0

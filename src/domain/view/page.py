@@ -1,6 +1,6 @@
 from src.domain.data.base import DataEntity
 
-__page_start = """
+__head = """
 <!DOCTYPE html> <html lang="en">
 <head>
     <title>Home - Professor Name</title>
@@ -47,16 +47,35 @@ __page_start = """
         }
     </style>
 </head>
+"""
+
+__body_isback = """
+<div class="body">
+
+<div class="navigation-background">
+    <a class="navigation-item" href="../home.html"> HOME </a>
+    <a class="navigation-item" href="../all_courses.html"> COURSES </a>
+    <a class="navigation-item" href="../announcements.html"> NEWS </a>
+    <a class="navigation-item" href="../about.html"> ABOUT </a>
+</div>
+
+<div class="center">
+
+
+"""
+
+__body_notback = """
 <div class="body">
 
 <div class="navigation-background">
     <a class="navigation-item" href="home.html"> HOME </a>
-    <a class="navigation-item" href="courses/all_courses.html"> COURSES </a>
+    <a class="navigation-item" href="all_courses.html"> COURSES </a>
     <a class="navigation-item" href="announcements.html"> NEWS </a>
     <a class="navigation-item" href="about.html"> ABOUT </a>
 </div>
 
 <div class="center">
+
 
 """
 
@@ -69,9 +88,13 @@ __page_end = """
 """
 
 
-def page(items: list):
+def page(items: list, isback: bool = False):
     content = ""
     for item in items:
         if isinstance(item, DataEntity): content += item.to_html()
         else: content += str(item)
-    return __page_start + content + __page_end
+    result = __head
+    if isback: result += __body_isback
+    else: result += __body_notback
+    result += content + __page_end
+    return result

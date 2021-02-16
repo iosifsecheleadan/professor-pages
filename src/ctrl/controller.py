@@ -1,5 +1,5 @@
 class WebControllerInterface:
-    def exit(self):
+    def save(self):
         """
         Save all data in Repos
         Write all WebPages to files

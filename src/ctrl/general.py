@@ -38,7 +38,10 @@ class GeneralController(WebControllerInterface):
     def remove_announcement(self, announcement: Announcement):
         self.Announcements.delete(announcement)
 
-    def exit(self):
+    def get_by_title(self, title: str):
+        return self.Announcements.getByTitle(title)
+
+    def save(self):
         self.AboutProfessor.save_all()
         self.Announcements.save_all()
         self._create_pages()
@@ -54,5 +57,17 @@ class GeneralController(WebControllerInterface):
         html_pageAbout = page([self.AboutProfessor.about])
         with open(self.about_page_location, "w") as file3:
             file3.write(html_pageAbout)
+
+    def get_professor(self):
+        return self.AboutProfessor.professor
+
+    def get_about(self):
+        return self.AboutProfessor.about
+
+    def delete_professor(self):
+        self.AboutProfessor.delete_professor()
+
+    def delete_about(self):
+        self.AboutProfessor.delete_about()
 
 

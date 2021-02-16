@@ -44,7 +44,7 @@ class MarkdownDocument(Document):
 
     def to_html(self) -> str:
         try:
-            with open(self.location, "r") as markdown:
+            with open("../page/" + self.location, "r") as markdown:
                 return material_card(commonmark(markdown.read()))
         except FileNotFoundError: return material_card(
             description(f"File {self.location} not found", color=red)

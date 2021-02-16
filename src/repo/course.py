@@ -44,8 +44,10 @@ class CourseRepository(FileRepositoryInterface):
         for course in self.courses:
             if course.name == name:
                 return course
+        return None
 
     def getByCode(self,code):
         for course in self.courses:
             if course.code == code:
                 return  course
+        return None

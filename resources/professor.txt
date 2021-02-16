@@ -1,1 +1,1 @@
-1,ana,pf,prof@,abc,23,ofvd,nolocation.jpg,abc.d
+0,iosif,prof,iosif@email.com,iosif@faculty.ro,13 - 15,home,image.png,info.md

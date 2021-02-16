@@ -10,5 +10,5 @@ if __name__ == '__main__':
     ctrl.add_announcement(Announcement("Titlu2",Document("nolocation.a"),Type.NORMAL))
     ctrl.create_professor(Professor(1,"ana","pf","prof@","abc","23","ofvd",Document("nolocation.jpg"),Document("abc.d")))
 
-    ctrl.exit()
+    ctrl.save()
 

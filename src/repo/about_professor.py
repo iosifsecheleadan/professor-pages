@@ -51,3 +51,9 @@ class AboutProfessorRepository(FileRepositoryInterface):
     def update_about(self, value: About):
         if self.about == value:
             self.about = value
+
+    def delete_professor(self):
+        self.professor = None
+
+    def delete_about(self):
+        self.about = None

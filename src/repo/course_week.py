@@ -45,10 +45,16 @@ class CourseWeekRepository(FileRepositoryInterface):
         for week in self.weeks:
             if week.week_number == week_nr and week.course_identifier==c_identif:
                 return week
+        return None
 
     def getByCourse(self,c_identif):
         vectCourse=[]
         for week in self.weeks:
             if c_identif == week.course_identifier:
-                vectCourse.appent(week)
+                vectCourse.append(week)
         return vectCourse
+
+    def delete_course(self, course_identifier):
+        for week in self.weeks:
+            if week.course_identifier == course_identifier:
+                self.weeks.remove(week)
