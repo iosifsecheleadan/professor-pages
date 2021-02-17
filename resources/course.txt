@@ -1,1 +1,2 @@
-1,sample_course,SC123,this,2,267
+2,sample_course,SC123,this faculty,2,543
+3,fdghjhgf,FGHGFD,faculty,123,54
